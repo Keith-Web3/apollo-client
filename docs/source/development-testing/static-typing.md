@@ -16,7 +16,7 @@ Below, we'll guide you through installing and configuring GraphQL Code Generator
 To get started using GraphQL Code Generator, begin by installing the following packages (using Yarn or NPM):
 
 ```bash
-yarn add -D typescript graphql @graphql-codegen/cli @graphql-codegen/client-preset @graphql-typed-document-node/core
+yarn add -D typescript graphql @graphql-codegen/cli @graphql-codegen/client-preset @graphql-typed-document-node/core @graphql-codegen/typescript-operations
 ```
 
 Next, we'll create a configuration file for GraphQL Code Generator, named [`codegen.ts`](https://www.the-guild.dev/graphql/codegen/docs/config-reference/codegen-config), at the root of our project:
@@ -35,7 +35,10 @@ const config: CodegenConfig = {
       presetConfig: {
         gqlTagName: 'gql',
       }
-    }
+    },
+    './src/__generated__/types.ts': {
+      plugins: ['typescript', 'typescript-operations'],
+    },
   },
   ignoreNoDocuments: true,
 };
